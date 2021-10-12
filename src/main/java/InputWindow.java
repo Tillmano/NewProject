@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InputWindow extends JFrame {
+public class InputWindow extends JDialog {
     private JButton button;
     private JTextField sourceTextfield, destTextfield, IdTextfield;
     private JLabel sourcePromptlabel, destPromptlabel, IdPromptLabel;

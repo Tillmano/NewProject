@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class GUI extends JFrame {
-    private String[] components = {"1", "2", "3", "4", "5"};
+    private String[] components = {"1 Resistor 9 ohms 1 amp", "2", "3", "4", "5"};
     private JList list;
     private JLabel label;
     private JButton button;
