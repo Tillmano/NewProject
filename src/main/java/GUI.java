@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class GUI extends JFrame {
+public class GUI extends JDialog implements ActionListener {
     private String[] components = {"1 Resistor 9 ohms 1 amp", "2", "3", "4", "5"};
     private JList list;
     private JLabel label;
@@ -17,22 +17,23 @@ public class GUI extends JFrame {
         button = new JButton("Add component");
         add(button);
 
-        event e = new event();
-
-        button.addActionListener(e);
+        button.addActionListener(this);
     }
 
-    public class event implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            InputWindow input = new InputWindow();
-            input.setVisible(true);
-            input.setSize(300, 150);
-        }
+    public void actionPerformed(ActionEvent e) {
+        InputWindow input = new InputWindow(this);
+        input.setVisible(true);
+        input.setSize(300, 150);
     }
+
+    public void setID(String ID) {
+        System.out.println(ID);
+    }
+
 
     public static void main(String args[]) {
         GUI gui = new GUI();
-        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gui.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         gui.setVisible(true);
         gui.setSize(300, 150);
         gui.setTitle("GUI");

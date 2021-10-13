@@ -3,12 +3,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InputWindow extends JDialog {
+public class InputWindow extends JDialog implements ActionListener {
     private JButton button;
     private JTextField sourceTextfield, destTextfield, IdTextfield;
     private JLabel sourcePromptlabel, destPromptlabel, IdPromptLabel;
+    private GUI owner;
 
-    public InputWindow() {
+    public InputWindow(GUI owner) {
+        super(owner, true);
+        this.owner = owner;
         setLayout(new FlowLayout());
         IdPromptLabel = new JLabel("Enter the component's ID");
         add(IdPromptLabel);
@@ -24,15 +27,15 @@ public class InputWindow extends JDialog {
         add(destTextfield);
         button = new JButton("Enter");
         add(button);
-        event e = new event();
-        button.addActionListener(e);
+        button.addActionListener(this);
     }
-    public class event implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
-            int destNode = (int) (Double.parseDouble(sourceTextfield.getText()));
-            String ID = (sourceTextfield.getText());
-            dispose();
-        }
+
+    public void actionPerformed(ActionEvent e) {
+        int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
+        int destNode = (int) (Double.parseDouble(sourceTextfield.getText()));
+        String ID = (sourceTextfield.getText());
+        owner.setID(ID);
+        dispose();
     }
 }
+
