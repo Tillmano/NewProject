@@ -11,6 +11,7 @@ public class InputWindow extends JDialog implements ActionListener {
 
     public InputWindow(GUI owner) {
         super(owner, true);
+
         this.owner = owner;
         setLayout(new FlowLayout());
         IdPromptLabel = new JLabel("Enter the component's ID");
@@ -38,4 +39,3 @@ public class InputWindow extends JDialog implements ActionListener {
         dispose();
     }
 }
-

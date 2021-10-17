@@ -11,8 +11,10 @@ public class GUI extends JDialog implements ActionListener {
     public GUI() {
         setLayout(new FlowLayout());
         label = new JLabel("List of components:");
+        label.setFont(label.getFont().deriveFont(30.0f));
         add(label);
         list = new JList(components);
+        list.setFont(list.getFont().deriveFont(30.0f));
         add(list);
         button = new JButton("Add component");
         add(button);
@@ -22,8 +24,10 @@ public class GUI extends JDialog implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         InputWindow input = new InputWindow(this);
+        input.pack();
         input.setVisible(true);
-        input.setSize(300, 150);
+        input.setSize(200, 400);
+        input.setTitle("Input");
     }
 
     public void setID(String ID) {
@@ -35,7 +39,7 @@ public class GUI extends JDialog implements ActionListener {
         GUI gui = new GUI();
         gui.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         gui.setVisible(true);
-        gui.setSize(300, 150);
+        gui.setSize(800, 300);
         gui.setTitle("GUI");
     }
 }
