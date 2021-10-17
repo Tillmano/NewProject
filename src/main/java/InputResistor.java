@@ -3,13 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InputWindow extends JDialog implements ActionListener {
+public class InputResistor extends JDialog implements ActionListener {
     private JButton button;
     private JTextField sourceTextfield, destTextfield, IdTextfield;
     private JLabel sourcePromptlabel, destPromptlabel, IdPromptLabel;
     private GUI owner;
 
-    public InputWindow(GUI owner) {
+    public InputResistor(GUI owner) {
         super(owner, true);
 
         this.owner = owner;
@@ -30,6 +30,9 @@ public class InputWindow extends JDialog implements ActionListener {
         add(button);
         button.addActionListener(this);
     }
+
+
+
 
     public void actionPerformed(ActionEvent e) {
         int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
