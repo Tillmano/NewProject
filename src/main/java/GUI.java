@@ -3,16 +3,17 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class GUI extends JDialog implements ActionListener {
-    private String[] components = {"1 Resistor 9 ohms 1 amp", "2", "3", "4", "5"};
     private JList list;
     private JLabel label;
     private JButton button;
+    private DefaultListModel components;
 
     public GUI() {
         setLayout(new FlowLayout());
         label = new JLabel("List of components:");
         label.setFont(label.getFont().deriveFont(30.0f));
         add(label);
+        components = new DefaultListModel();
         list = new JList(components);
         list.setFont(list.getFont().deriveFont(30.0f));
         add(list);
@@ -31,7 +32,7 @@ public class GUI extends JDialog implements ActionListener {
     }
 
     public void setID(String ID) {
-        System.out.println(ID);
+        components.addElement(ID);
     }
 
 

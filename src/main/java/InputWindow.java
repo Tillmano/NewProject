@@ -33,8 +33,8 @@ public class InputWindow extends JDialog implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
-        int destNode = (int) (Double.parseDouble(sourceTextfield.getText()));
-        String ID = (sourceTextfield.getText());
+        int destNode = (int) (Double.parseDouble(destTextfield.getText()));
+        String ID = (IdTextfield.getText());
         owner.setID(ID);
         dispose();
     }
