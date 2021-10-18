@@ -3,35 +3,70 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class GUI extends JDialog implements ActionListener {
-    private String[] components = {"1 Resistor 9 ohms 1 amp", "2", "3", "4", "5"};
     private JList list;
     private JLabel label;
-    private JButton button;
+    private JButton rButton, vButton;
+    private DefaultListModel components;
 
     public GUI() {
-        setLayout(new FlowLayout());
+
         label = new JLabel("List of components:");
         label.setFont(label.getFont().deriveFont(30.0f));
-        add(label);
+        add(label, (BorderLayout.PAGE_START));
+        components = new DefaultListModel();
         list = new JList(components);
+        list.setVisibleRowCount(3);
+        add(new JScrollPane(list));
         list.setFont(list.getFont().deriveFont(30.0f));
-        add(list);
-        button = new JButton("Add component");
-        add(button);
+        add(list, BorderLayout.CENTER);
+        rButton = new JButton("Add resistor");
+        add(rButton, BorderLayout.LINE_START);
+        rButton.addActionListener(this);
+        vButton = new JButton("Add battery");
+        add(vButton, BorderLayout.LINE_END);
+        vButton.addActionListener(this);
 
-        button.addActionListener(this);
+
+        JScrollPane listScroller = new JScrollPane(list);
+        listScroller.setPreferredSize(new Dimension(250, 80));
+        listScroller.setAlignmentX(LEFT_ALIGNMENT);
+        JPanel listPane = new JPanel();
+        listPane.setLayout(new BoxLayout(listPane, BoxLayout.PAGE_AXIS));
+        listPane.add(label);
+        listPane.add(Box.createRigidArea(new Dimension(0,5)));
+        listPane.add(listScroller);
+        listPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
+        buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        buttonPane.add(Box.createHorizontalGlue());
+        buttonPane.add(rButton);
+        buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
+        buttonPane.add(vButton);
+        Container contentPane = getContentPane();
+        contentPane.add(listPane, BorderLayout.CENTER);
+        contentPane.add(buttonPane, BorderLayout.PAGE_END);
     }
 
-    public void actionPerformed(ActionEvent e) {
-        InputWindow input = new InputWindow(this);
-        input.pack();
-        input.setVisible(true);
-        input.setSize(200, 400);
-        input.setTitle("Input");
+    public void actionPerformed(ActionEvent event) {
+        if(event.getSource() == rButton) {
+            InputResistor input = new InputResistor(this);
+            input.pack();
+            input.setVisible(true);
+            input.setSize(200, 400);
+            input.setTitle("Input");
+        }
+        /*if(event.getSource() == rButton) {
+            InputBattery input = new InputBattery(this);
+            input.pack();
+            input.setVisible(true);
+            input.setSize(200, 400);
+            input.setTitle("Input");
+        }*/
     }
 
     public void setID(String ID) {
-        System.out.println(ID);
+        components.addElement(ID);
     }
 
 
@@ -39,7 +74,7 @@ public class GUI extends JDialog implements ActionListener {
         GUI gui = new GUI();
         gui.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         gui.setVisible(true);
-        gui.setSize(800, 300);
+        gui.setSize(500, 500);
         gui.setTitle("GUI");
     }
 }
