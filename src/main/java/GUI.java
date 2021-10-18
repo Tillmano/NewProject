@@ -9,7 +9,7 @@ public class GUI extends JDialog implements ActionListener {
     private DefaultListModel components;
 
     public GUI() {
-        setLayout(new BorderLayout());
+
         label = new JLabel("List of components:");
         label.setFont(label.getFont().deriveFont(30.0f));
         add(label, (BorderLayout.PAGE_START));
@@ -25,6 +25,27 @@ public class GUI extends JDialog implements ActionListener {
         vButton = new JButton("Add battery");
         add(vButton, BorderLayout.LINE_END);
         vButton.addActionListener(this);
+
+
+        JScrollPane listScroller = new JScrollPane(list);
+        listScroller.setPreferredSize(new Dimension(250, 80));
+        listScroller.setAlignmentX(LEFT_ALIGNMENT);
+        JPanel listPane = new JPanel();
+        listPane.setLayout(new BoxLayout(listPane, BoxLayout.PAGE_AXIS));
+        listPane.add(label);
+        listPane.add(Box.createRigidArea(new Dimension(0,5)));
+        listPane.add(listScroller);
+        listPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
+        buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        buttonPane.add(Box.createHorizontalGlue());
+        buttonPane.add(rButton);
+        buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
+        buttonPane.add(vButton);
+        Container contentPane = getContentPane();
+        contentPane.add(listPane, BorderLayout.CENTER);
+        contentPane.add(buttonPane, BorderLayout.PAGE_END);
     }
 
     public void actionPerformed(ActionEvent event) {
@@ -53,8 +74,7 @@ public class GUI extends JDialog implements ActionListener {
         GUI gui = new GUI();
         gui.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         gui.setVisible(true);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        gui.setSize(screenSize.width, screenSize.height);
+        gui.setSize(500, 500);
         gui.setTitle("GUI");
     }
 }
