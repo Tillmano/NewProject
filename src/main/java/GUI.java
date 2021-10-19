@@ -65,8 +65,9 @@ public class GUI extends JDialog implements ActionListener {
         }*/
     }
 
-    public void setID(String ID) {
-        components.addElement(ID);
+    public void setResistor(String ID, int sourceNode, int destNode, double resistance) {
+        Resistor resistor = new Resistor(sourceNode, destNode, resistance, ID);
+        components.addElement(resistor);
     }
 
 
