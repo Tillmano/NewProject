@@ -9,4 +9,14 @@ public class Resistor {
         this.resistance = resistance;
         this.ID = ID;
     }
+
+    @Override
+    public String toString() {
+        return "Resistor{" +
+                "sourceNode=" + sourceNode +
+                ", destNode=" + destNode +
+                ", resistance=" + resistance +
+                ", ID='" + ID + '\'' +
+                '}';
+    }
 }
