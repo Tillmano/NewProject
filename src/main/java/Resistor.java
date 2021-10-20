@@ -1,13 +1,9 @@
-public class Resistor {
-    int sourceNode, destNode;
+public class Resistor extends Component {
     double resistance;
-    String ID;
 
     public Resistor(int sourceNode, int destNode, double resistance, String ID) {
-        this.destNode = destNode;
-        this.sourceNode = sourceNode;
+        super(sourceNode, destNode, ID);
         this.resistance = resistance;
-        this.ID = ID;
     }
 
     @Override

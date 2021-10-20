@@ -3,13 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InputResistor extends JDialog implements ActionListener {
+public class InputBattery extends JDialog implements ActionListener {
     private JButton button;
-    private JTextField sourceTextfield, destTextfield, IdTextfield, rTextfield;
-    private JLabel sourcePromptlabel, destPromptlabel, IdPromptLabel, rPromptLabel;
+    private JTextField sourceTextfield, destTextfield, IdTextfield, vTextfield;
+    private JLabel sourcePromptlabel, destPromptlabel, IdPromptLabel, vPromptLabel;
     private GUI owner;
 
-    public InputResistor(GUI owner) {
+    public InputBattery(GUI owner) {
         super(owner, true);
 
         this.owner = owner;
@@ -26,10 +26,10 @@ public class InputResistor extends JDialog implements ActionListener {
         add(destPromptlabel);
         destTextfield = new JTextField(5);
         add(destTextfield);
-        rPromptLabel = new JLabel("Enter the resistance");
-        add(rPromptLabel);
-        rTextfield = new JTextField(5);
-        add(rTextfield);
+        vPromptLabel = new JLabel("Enter the voltage");
+        add(vPromptLabel);
+        vTextfield = new JTextField(5);
+        add(vTextfield);
         button = new JButton("Enter");
         add(button);
         button.addActionListener(this);
@@ -42,8 +42,8 @@ public class InputResistor extends JDialog implements ActionListener {
         int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
         int destNode = (int) (Double.parseDouble(destTextfield.getText()));
         String ID = (IdTextfield.getText());
-        int resistance = (int) (Double.parseDouble(rTextfield.getText()));
-        owner.setResistor(ID, sourceNode, destNode, resistance);
+        double voltage = (Double.parseDouble(vTextfield.getText()));
+        owner.setBattery(ID, sourceNode, destNode, voltage);
 
         dispose();
     }

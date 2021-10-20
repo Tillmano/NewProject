@@ -55,19 +55,23 @@ public class GUI extends JDialog implements ActionListener {
             input.setVisible(true);
             input.setSize(200, 400);
             input.setTitle("Input");
-        }
-        /*if(event.getSource() == rButton) {
+
+        }else if(event.getSource() == vButton) {
             InputBattery input = new InputBattery(this);
             input.pack();
             input.setVisible(true);
             input.setSize(200, 400);
             input.setTitle("Input");
-        }*/
+        }
     }
 
     public void setResistor(String ID, int sourceNode, int destNode, double resistance) {
         Resistor resistor = new Resistor(sourceNode, destNode, resistance, ID);
         components.addElement(resistor);
+    }
+    public void setBattery(String ID, int sourceNode, int destNode, double voltage) {
+        Battery battery = new Battery(sourceNode, destNode, voltage, ID);
+        components.addElement(battery);
     }
 
 
