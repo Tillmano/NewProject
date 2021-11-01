@@ -41,9 +41,10 @@ public class InputResistor extends JDialog implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
         int destNode = (int) (Double.parseDouble(destTextfield.getText()));
-        String ID = (IdTextfield.getText());
+        int ID = (int) (Double.parseDouble(IdTextfield.getText()));
         int resistance = (int) (Double.parseDouble(rTextfield.getText()));
-        owner.setResistor(ID, sourceNode, destNode, resistance);
+        Resistor resistor = new Resistor(sourceNode, destNode, resistance, ID);
+        owner.addComponent(resistor);
 
         dispose();
     }

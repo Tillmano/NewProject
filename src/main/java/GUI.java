@@ -1,30 +1,37 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import javax.swing.*;
 
 public class GUI extends JDialog implements ActionListener {
     private JList list;
     private JLabel label;
-    private JButton rButton, vButton;
+    private JButton rButton, vButton, sButton;
     private DefaultListModel components;
 
+
     public GUI() {
+        Solver solver = new Solver();
 
         label = new JLabel("List of components:");
         label.setFont(label.getFont().deriveFont(30.0f));
         add(label, (BorderLayout.PAGE_START));
-        components = new DefaultListModel();
+        components = new DefaultListModel<Component>();
         list = new JList(components);
         list.setVisibleRowCount(3);
         add(new JScrollPane(list));
         list.setFont(list.getFont().deriveFont(30.0f));
-        add(list, BorderLayout.CENTER);
+        add(list);
         rButton = new JButton("Add resistor");
-        add(rButton, BorderLayout.LINE_START);
+        add(rButton);
         rButton.addActionListener(this);
         vButton = new JButton("Add battery");
-        add(vButton, BorderLayout.LINE_END);
+        add(vButton);
         vButton.addActionListener(this);
+        sButton = new JButton("Solve");
+        add(sButton);
+        sButton.addActionListener(this);
 
 
         JScrollPane listScroller = new JScrollPane(list);
@@ -43,6 +50,8 @@ public class GUI extends JDialog implements ActionListener {
         buttonPane.add(rButton);
         buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
         buttonPane.add(vButton);
+        buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
+        buttonPane.add(sButton);
         Container contentPane = getContentPane();
         contentPane.add(listPane, BorderLayout.CENTER);
         contentPane.add(buttonPane, BorderLayout.PAGE_END);
@@ -62,16 +71,17 @@ public class GUI extends JDialog implements ActionListener {
             input.setVisible(true);
             input.setSize(200, 400);
             input.setTitle("Input");
+        }else if(event.getSource() == sButton){
+            ArrayList<Component> c = new ArrayList<>();
+            for (Enumeration<Component> e = components.elements(); e.hasMoreElements();) {
+                c.add(e.nextElement());
+            }
+            Solver.solve(c);
         }
     }
 
-    public void setResistor(String ID, int sourceNode, int destNode, double resistance) {
-        Resistor resistor = new Resistor(sourceNode, destNode, resistance, ID);
-        components.addElement(resistor);
-    }
-    public void setBattery(String ID, int sourceNode, int destNode, double voltage) {
-        Battery battery = new Battery(sourceNode, destNode, voltage, ID);
-        components.addElement(battery);
+    public void addComponent(Component component){
+        components.addElement(component);
     }
 
 

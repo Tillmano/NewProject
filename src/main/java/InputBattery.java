@@ -41,9 +41,10 @@ public class InputBattery extends JDialog implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
         int destNode = (int) (Double.parseDouble(destTextfield.getText()));
-        String ID = (IdTextfield.getText());
+        int ID = (int) (Double.parseDouble(IdTextfield.getText()));
         double voltage = (Double.parseDouble(vTextfield.getText()));
-        owner.setBattery(ID, sourceNode, destNode, voltage);
+        Battery battery = new Battery(sourceNode, destNode, voltage, ID);
+        owner.addComponent(battery);
 
         dispose();
     }

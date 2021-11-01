@@ -1,7 +1,7 @@
 public class Battery extends Component {
     double voltage;
 
-    public Battery(int sourceNode, int destNode, double voltage, String ID) {
+    public Battery(int sourceNode, int destNode, double voltage, int ID) {
         super(sourceNode, destNode, ID);
         this.voltage = voltage;
     }

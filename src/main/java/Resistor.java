@@ -1,7 +1,7 @@
 public class Resistor extends Component {
     double resistance;
 
-    public Resistor(int sourceNode, int destNode, double resistance, String ID) {
+    public Resistor(int sourceNode, int destNode, double resistance, int ID) {
         super(sourceNode, destNode, ID);
         this.resistance = resistance;
     }
