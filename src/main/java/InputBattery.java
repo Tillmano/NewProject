@@ -36,16 +36,19 @@ public class InputBattery extends JDialog implements ActionListener {
     }
 
 
-
-
     public void actionPerformed(ActionEvent e) {
-        int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
-        int destNode = (int) (Double.parseDouble(destTextfield.getText()));
-        int ID = (int) (Double.parseDouble(IdTextfield.getText()));
-        double voltage = (Double.parseDouble(vTextfield.getText()));
-        Battery battery = new Battery(sourceNode, destNode, voltage, ID);
-        owner.addComponent(battery);
+        try {
+            int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
+            int destNode = (int) (Double.parseDouble(destTextfield.getText()));
+            int ID = (int) (Double.parseDouble(IdTextfield.getText()));
+            double voltage = (Double.parseDouble(vTextfield.getText()));
+            Battery battery = new Battery(sourceNode, destNode, voltage, ID);
+            owner.addComponent(battery);
+        } catch (NumberFormatException numberFormatException) {
+            JOptionPane.showMessageDialog(null,
+                    "Error: You must enter an integer for the Nodes and ID and a Double for the voltage");
 
-        dispose();
+            dispose();
+        }
     }
 }

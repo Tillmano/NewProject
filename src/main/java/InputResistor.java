@@ -39,12 +39,17 @@ public class InputResistor extends JDialog implements ActionListener {
 
 
     public void actionPerformed(ActionEvent e) {
-        int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
-        int destNode = (int) (Double.parseDouble(destTextfield.getText()));
-        int ID = (int) (Double.parseDouble(IdTextfield.getText()));
-        int resistance = (int) (Double.parseDouble(rTextfield.getText()));
-        Resistor resistor = new Resistor(sourceNode, destNode, resistance, ID);
-        owner.addComponent(resistor);
+        try {
+            int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
+            int destNode = (int) (Double.parseDouble(destTextfield.getText()));
+            int ID = (int) (Double.parseDouble(IdTextfield.getText()));
+            Double resistance = (Double.parseDouble(rTextfield.getText()));
+            Resistor resistor = new Resistor(sourceNode, destNode, resistance, ID);
+            owner.addComponent(resistor);
+        } catch (NumberFormatException numberFormatException){
+            JOptionPane.showMessageDialog(null,
+                    "Error: You must enter an integer for the Nodes and ID and a Double for the resistance");
+        }
 
         dispose();
     }
