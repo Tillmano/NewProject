@@ -42,7 +42,7 @@ public class InputBattery extends JDialog implements ActionListener {
             int destNode = (int) (Double.parseDouble(destTextfield.getText()));
             int ID = (int) (Double.parseDouble(IdTextfield.getText()));
             double voltage = (Double.parseDouble(vTextfield.getText()));
-            Battery battery = new Battery(sourceNode, destNode, voltage, ID);
+            Battery battery = new Battery(sourceNode, destNode, voltage, ID, 0);
             owner.addComponent(battery);
         } catch (NumberFormatException numberFormatException) {
             JOptionPane.showMessageDialog(null,
