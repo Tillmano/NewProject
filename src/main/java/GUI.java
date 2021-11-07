@@ -14,6 +14,7 @@ public class GUI extends JDialog implements ActionListener {
     public GUI() {
         Solver solver = new Solver();
 
+        //Creates GUI elements
         label = new JLabel("List of components:");
         label.setFont(label.getFont().deriveFont(30.0f));
         add(label, (BorderLayout.PAGE_START));
@@ -33,7 +34,7 @@ public class GUI extends JDialog implements ActionListener {
         add(sButton);
         sButton.addActionListener(this);
 
-
+        //lays out GUI
         JScrollPane listScroller = new JScrollPane(list);
         listScroller.setPreferredSize(new Dimension(250, 80));
         listScroller.setAlignmentX(LEFT_ALIGNMENT);
@@ -56,7 +57,7 @@ public class GUI extends JDialog implements ActionListener {
         contentPane.add(listPane, BorderLayout.CENTER);
         contentPane.add(buttonPane, BorderLayout.PAGE_END);
     }
-
+    //Instantiates dialogs to input the component that the user wants, or calls the solve method.
     public void actionPerformed(ActionEvent event) {
         if(event.getSource() == rButton) {
             InputResistor input = new InputResistor(this);
@@ -64,7 +65,6 @@ public class GUI extends JDialog implements ActionListener {
             input.setVisible(true);
             input.setSize(200, 400);
             input.setTitle("Input");
-
         }else if(event.getSource() == vButton) {
             InputBattery input = new InputBattery(this);
             input.pack();
@@ -79,7 +79,7 @@ public class GUI extends JDialog implements ActionListener {
             Solver.solve(c);
         }
     }
-
+    //adds the new component to the list of components
     public void addComponent(Component component){
         components.addElement(component);
     }

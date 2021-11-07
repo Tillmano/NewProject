@@ -9,9 +9,9 @@ public class InputResistor extends JDialog implements ActionListener {
     private JLabel sourcePromptlabel, destPromptlabel, IdPromptLabel, rPromptLabel;
     private GUI owner;
 
+    //A modal dialog (owned by the GUI) which lets the user input component properties.
     public InputResistor(GUI owner) {
         super(owner, true);
-
         this.owner = owner;
         setLayout(new FlowLayout());
         IdPromptLabel = new JLabel("Enter the component's ID");
@@ -37,7 +37,7 @@ public class InputResistor extends JDialog implements ActionListener {
 
 
 
-
+    //When the button is pressed, a resistor object is instantiated and the addComponent method is called.
     public void actionPerformed(ActionEvent e) {
         try {
             int sourceNode = (int) (Double.parseDouble(sourceTextfield.getText()));
@@ -46,6 +46,7 @@ public class InputResistor extends JDialog implements ActionListener {
             Double resistance = (Double.parseDouble(rTextfield.getText()));
             Resistor resistor = new Resistor(sourceNode, destNode, resistance, ID, 0);
             owner.addComponent(resistor);
+            //Ensures the user enters the correct format
         } catch (NumberFormatException numberFormatException){
             JOptionPane.showMessageDialog(null,
                     "Error: You must enter an integer for the Nodes and ID and a Double for the resistance");
